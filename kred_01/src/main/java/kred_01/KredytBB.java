@@ -1,4 +1,4 @@
-package com.jsfcourse.calc;
+package kred_01;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -6,6 +6,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import java.lang.Math;
 
 @Named
 @RequestScoped
@@ -56,8 +57,8 @@ public class KredytBB {
 			double kwota = Double.parseDouble(this.kwota);
 			double lata = Double.parseDouble(this.lata);
 			double procent = Double.parseDouble(this.procent);
-
-			result = (kwota/(lata*12))*(1+(procent/100));			
+			
+			result = Math.round((kwota/(lata*12))*(1+(procent/100))*100.0)/100.0;
 			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Operacja wykonana poprawnie", null));
 			return true;
 		} catch (Exception e) {
