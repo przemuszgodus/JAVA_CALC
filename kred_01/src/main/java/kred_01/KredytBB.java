@@ -2,6 +2,7 @@ package kred_01;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -75,12 +76,11 @@ public class KredytBB {
 		return null;
 	}
 	
+	public String calc_AJAX() {
+		if (rata()) {
+			ctx.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Rata: " + result, null));
+		}
+		return null;
 	}
-
-
 	
-
-	
-	
-	
-
+}
