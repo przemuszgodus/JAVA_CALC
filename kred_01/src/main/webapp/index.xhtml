@@ -1,44 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-	<title>Kredyt, wersja podstawowa</title>
+	<title>Kalulator kredytu</title>
 </h:head>
 <h:body>
  
-<p:panel header="Kredyt, obliczanie pojedynczej raty" toggleable="true" closeable="true" toggleSpeed="1000" style="width: 30%; margin:auto;">
+	<p:panel header="Kredyt, obliczanie pojedynczej raty" toggleable="true" closeable="true" toggleSpeed="1000" style="width: 35%; margin:auto;">
 	
-
-	<h:form>
-	<h:panelGrid id="grid" columns="3" cellpadding="5">
-	
-	
-	
-	<p:outputLabel for="kwota" value="Kwota:"/>
-	<p:inputText id="kwota" value="#{kredytBB.kwota}" required="true" requiredMessage="Brak kwoty"/>
-	<p:message for="kwota" />
-	
-	<p:outputLabel for="lata" value="Lata spłaty:" />
-	<p:inputText id="lata" value="#{kredytBB.lata}" required="true" requiredMessage="Brak lat"/>
-	<p:message for="lata" />
-	
-	<p:outputLabel for="procent" value="Oprocentowanie:" />
-	<p:inputText id="procent" value="#{kredytBB.procent}" required="true" requiredMessage="Brak oprocentowania"/>
-	<p:message for="procent" />
-	
-		<p:commandButton value="Oblicz rate" action="#{kredytBB.calc()}" update="@form" styleClass="ui-button-secondary" icon="pi pi-dollar" />
-		<p:commandButton value="Oblicz rate (AJAX)" action="#{kredytBB.calc_AJAX()}"  styleClass="ui-button-secondary" icon="pi pi-euro" update="msg" />
-	</h:panelGrid>
-	
-		<p:messages id="msg" />
+		<h:form>
+			<h:panelGrid id="grid" columns="3" cellpadding="5">
+		
+			<p:outputLabel for="kwota" value="Kwota:"/>
+			<p:inputText id="kwota" value="#{kredytBB.kwota}" minValue="1" required="true" validatorMessage="Wartość musi byc wieksza od 0 i mniejsza od 100000"  requiredMessage="Brak kwoty">
+			<f:validateDoubleRange minimum="1" maximum="99999"/>
+			</p:inputText>
+			<p:message for="kwota" />
+			
+			<p:outputLabel for="lata" value="Lata spłaty:" />
+			<p:inputText id="lata" value="#{kredytBB.lata}" required="true" validatorMessage="Co najmniej jeden rok" requiredMessage="Brak lat">
+			<f:validateDoubleRange minimum="1"/>
+			</p:inputText>
+			<p:message for="lata" />
+			
+			
+			<p:outputLabel for="procent" value="Oprocentowanie:" />
+			<p:inputText id="procent" value="#{kredytBB.procent}" required="true" validatorMessage="Maksymalnie 100% oprocentowania" requiredMessage="Brak oprocentowania">
+			<f:validateDoubleRange maximum="100"/>
+			</p:inputText>
+			<p:message for="procent" />
+			
+			<p:commandButton value="Oblicz rate" action="#{kredytBB.calc()}" update="@form" styleClass="ui-button-secondary" icon="pi pi-dollar" />
+			<p:commandButton value="Oblicz rate (AJAX)" action="#{kredytBB.calc_AJAX()}"  styleClass="ui-button-secondary" icon="pi pi-euro" update="msg" />
+			</h:panelGrid>
+			<p:messages id="msg" />
 		</h:form>
 		
-            <h5>JPDSI2 Przemysław Zgoda-Giczański PAW3</h5>
-           
+        <h5>JPDSI2 Przemysław Zgoda-Giczański PAW3</h5>
 	</p:panel>
 	
 	</h:body>
