@@ -1,0 +1,16 @@
+body{
+	background-color: rgb(120,120,120);
+}
+
+.center {
+	margin-left: 43%;
+	font-family: Georgia;
+}
+.panel{
+	width: 32%; 
+	margin: 5% auto auto auto;
+}
+
+.button1 {
+	margin-top:10px;
+}

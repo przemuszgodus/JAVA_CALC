@@ -5,14 +5,17 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:head>
-	<title>Kalulator kredytu</title>
-</h:head>
-<h:body>
- 
-	<p:panel header="Kredyt, obliczanie pojedynczej raty" toggleable="true" closeable="true" toggleSpeed="1000" style="width: 35%; margin:auto;">
+
+	<ui:composition template="/templates/main-template.xhtml">
+	
+		<ui:define name="title">Kalkulator kredytowy
+		</ui:define>
+		
+		<ui:define name="pageContent">
+		<p:panel header="Kredyt, obliczanie pojedynczej raty" class="panel" toggleable="true" closeable="true" toggleSpeed="1000">
 	
 		<h:form>
+		
 			<h:panelGrid id="grid" columns="3" cellpadding="5">
 		
 			<p:outputLabel for="kwota" value="Kwota:"/>
@@ -38,10 +41,12 @@
 			<p:commandButton value="Oblicz rate (AJAX)" action="#{kredytBB.calc_AJAX()}"  styleClass="ui-button-secondary" icon="pi pi-euro" update="msg" />
 			</h:panelGrid>
 			<p:messages id="msg" />
+		
 		</h:form>
 		
-        <h5>JPDSI2 Przemysław Zgoda-Giczański PAW3</h5>
-	</p:panel>
-	
-	</h:body>
+       	<h5>JPDSI2 Przemysław Zgoda-Giczański PAW3</h5>
+       	
+			</p:panel>
+		</ui:define>
+	</ui:composition>
 </html>
